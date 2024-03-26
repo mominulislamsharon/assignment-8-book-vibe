@@ -6,11 +6,13 @@ import Home from './Components/Home/Home.jsx';
 import ListsBook from './Components/Home/ListsBook.jsx';
 import PageRead from './Components/Home/PageRead.jsx';
 import Mainlayout from './Layout/Mainlayout.jsx';
+import ErrorPage from './Components/ErrorPage/ErrorPage.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Mainlayout></Mainlayout>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: '/',

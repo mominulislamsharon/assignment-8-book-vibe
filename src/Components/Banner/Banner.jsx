@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Banner = () => {
   return (
     <div className="hero mt-12  bg-[#1313130D] rounded-3xl max-w-7xl h-[550px] mx-auto">
@@ -5,7 +7,7 @@ const Banner = () => {
     <img src="./images/banner.png" className="max-w-sm" />
     <div className="ml-28">
       <h1 className="text-5xl font-bold">Reading sparks joy, expands horizons, comforts.</h1>
-      <button className="btn mt-12 bg-[#23BE0A] text-white text-lg font-bold">View The List</button>
+      <Link to='/listed' className="btn mt-12 bg-[#23BE0A] text-white text-lg font-bold">View The List</Link>
     </div>
   </div>
 </div>
