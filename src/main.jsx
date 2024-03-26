@@ -7,6 +7,7 @@ import ListsBook from './Components/Home/ListsBook.jsx';
 import PageRead from './Components/Home/PageRead.jsx';
 import Mainlayout from './Layout/Mainlayout.jsx';
 import ErrorPage from './Components/ErrorPage/ErrorPage.jsx';
+import BookDetails from './Components/BookCard/BookDetails/BookDetails.jsx';
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
         path: "/pageread",
         element: <PageRead></PageRead>
       },
+      {
+        path: "/book-detals/:id",
+        element: <BookDetails></BookDetails>
+      }
     ]
   },
 ]);
