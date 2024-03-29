@@ -3,15 +3,29 @@ import UseData from "../../Hooks/UseData";
 import { useEffect, useState } from "react";
 
 
+import { saveToLocalStorage } from "../../Utils/localStorage";
+
+
+
+
 const BookDetails = () => {
   const [singlData, setSingleData] = useState({});
   const {id} = useParams();
   const {data, loading} = UseData()
 
+  const handleRead = () => {
+    saveToLocalStorage(singlData);
+  }
+
+  const handleWishList = () => {
+    saveToLocalStorage(singlData);
+  }
+
+  
+
   useEffect(()=>{
     if(data){
       const singlData = data.find(item => item.id == id);
-      console.log(singlData);
       setSingleData(singlData);
     }
   },[data, id])
@@ -47,8 +61,8 @@ const BookDetails = () => {
           <p className="font-bold">{rating}</p>
         </div>
         <div className="pt-6 text-black">
-        <button className="btn hover:bg-green-400">Read</button>
-          <button className="btn bg-sky-500 rounded-lg ml-6 border hover:bg-green-600">Wishlist</button>
+        <button onClick={handleRead} className="btn hover:bg-green-400">Read</button>
+          <button onClick={handleWishList} className="btn bg-sky-500 rounded-lg ml-6 border hover:bg-green-600">Wishlist</button>
         </div>
       </div>
     </div>

@@ -24,6 +24,8 @@ const NavBar = () => {
             <NavLink to='/' className={({isActive}) => isActive ? 'text-[#23BE0A] font-medium' : 'font-medium'}>Home</NavLink>
             <NavLink to='/listed' className={({isActive}) => isActive ? 'text-[#23BE0A] font-medium' : 'font-medium'}>Listed Books</NavLink>
             <NavLink to='/pageread' className={({isActive}) => isActive ? 'text-[#23BE0A] font-medium' : 'font-medium'}>Pages to Read</NavLink>
+            <NavLink to='/favouriteBooks' className={({isActive}) => isActive ? 'text-[#23BE0A] font-medium' : 'font-medium'}>Favourite Books</NavLink>
+            <NavLink to='/morebooks' className={({isActive}) => isActive ? 'text-[#23BE0A] font-medium' : 'font-medium'}>More..</NavLink>
     </ul>
   </div>
   <div className="navbar-end text-lg font-medium gap-4">
