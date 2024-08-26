@@ -9,15 +9,6 @@ import WishlistBooks from "./WishlistBooks";
 const ListsBook = () => {
 	const {localData} = UseloacalStorage();
 	const [tabIndex, setTabIndex] = useState(0)
-  const data = useLoaderData();
-
-	const renderBooks = () => {
-    if (!localData || localData.length === 0) {
-      return <div>No book data available</div>;
-    }
-    return null;
-  };
-	
 
   return (
     <div className="max-w-7xl mt-12 mx-auto ">
