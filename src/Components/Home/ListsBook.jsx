@@ -2,14 +2,21 @@ import { useState } from "react";
 import { Link, Outlet, useLoaderData } from "react-router-dom";
 import UseloacalStorage from "../Hooks/UseloacalStorage";
 import ReadBooks from "./ReadBooks";
+import WishlistBooks from "./WishlistBooks";
 
 
 
 const ListsBook = () => {
 	const {localData} = UseloacalStorage();
-	console.log(localData);
 	const [tabIndex, setTabIndex] = useState(0)
   const data = useLoaderData();
+
+	const renderBooks = () => {
+    if (!localData || localData.length === 0) {
+      return <div>No book data available</div>;
+    }
+    return null;
+  };
 	
 
   return (
@@ -31,12 +38,28 @@ const ListsBook = () => {
 	</Link>
 	
 </div>
-<Outlet></Outlet>
-<div>
 	{
-		localData.map((data) => <ReadBooks key={data.id} data={data}></ReadBooks>)
-	}
-</div>
+  tabIndex === 0 && (
+    <div>
+      {
+        localData
+          .filter(item => item.listType === "reading") 
+          .map(data => <ReadBooks key={data.id} data={data}></ReadBooks>)
+      }
+    </div>
+  )
+}
+{
+  tabIndex === 1 && (
+    <div>
+      {
+        localData
+          .filter(item => item.listType === "wishlist") 
+          .map(data => <WishlistBooks key={data.id} data={data}></WishlistBooks>)
+      }
+    </div>
+  )
+}
     </div>
   );
 };

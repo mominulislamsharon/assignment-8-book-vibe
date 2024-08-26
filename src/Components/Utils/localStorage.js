@@ -1,16 +1,17 @@
-export const saveToLocalStorage = (data) => {
-  const saveData = JSON.parse(localStorage.getItem("book")) || [];
-
-  const existedData = saveData.find((item) => item.id == item.id);
-  if(!existedData){
-    saveData.push(data);
+export const saveToLocalStorage = (data, listType) => {
+  const saveData = JSON.parse(localStorage.getItem("bookdetails")) || [];
+  const existedData = saveData.find((item) => item.id === data.id);
+  if (!existedData) {
+    const newData = { ...data, listType };
+    saveData.push(newData);
     localStorage.setItem("bookdetails", JSON.stringify(saveData));
-    alert("Successfully");
-  }
-  else{
-    alert("Alredy access");
+    console.log("Book added:", newData);
+    alert("Successfully added to list");
+  } else {
+    alert("Already exists in the list");
   }
 };
+
 
 export const getFormalLocalStorage = () => {
   const data = JSON.parse(localStorage.getItem("bookdetails")) || [];
