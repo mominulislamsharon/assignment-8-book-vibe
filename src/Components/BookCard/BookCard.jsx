@@ -2,7 +2,6 @@ import { IoIosStarOutline } from "react-icons/io";
 import { Link } from "react-router-dom";
 
 const BookCard = ({item}) => {
-  console.log(item);
   const {id, bookName, author, image, rating, category, publisher} = item || {};
   return (
       <Link to={`/book-detals/${id}`}>
