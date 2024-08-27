@@ -1,14 +1,17 @@
 import { useState } from "react";
-import { Link, Outlet, useLoaderData } from "react-router-dom";
+import { Link} from "react-router-dom";
 import UseloacalStorage from "../Hooks/UseloacalStorage";
 import ReadBooks from "./ReadBooks";
 import WishlistBooks from "./WishlistBooks";
+import { BarChart } from "recharts";
 
 
 
 const ListsBook = () => {
 	const {localData} = UseloacalStorage();
 	const [tabIndex, setTabIndex] = useState(0)
+
+  const filteredBooks = localData.filter(item => item.listType === (tabIndex === 0 ? "reading" : "wishlist"));
 
   return (
     <div className="max-w-7xl mt-12 mx-auto ">
@@ -32,22 +35,17 @@ const ListsBook = () => {
 	{
   tabIndex === 0 && (
     <div>
-      {
-        localData
-          .filter(item => item.listType === "reading") 
-          .map(data => <ReadBooks key={data.id} data={data}></ReadBooks>)
-      }
-    </div>
-  )
-}
-{
-  tabIndex === 1 && (
-    <div>
-      {
-        localData
-          .filter(item => item.listType === "wishlist") 
-          .map(data => <WishlistBooks key={data.id} data={data}></WishlistBooks>)
-      }
+<BarChart data={filteredBooks} /> 
+          {filteredBooks.map(data => (
+            <ReadBooks key={data.id} data={data} />
+          ))}
+        </div>
+      )}
+      {tabIndex === 1 && (
+        <div>
+          {filteredBooks.map(data => (
+            <WishlistBooks key={data.id} data={data} />
+          ))}
     </div>
   )
 }
