@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const ReadBooks = ({ data }) => {
+const ReadBooks = ({ data, toggleFavorite, isFavorite }) => {
   const { bookName, id, author, image, rating, category, publisher, review, totalPages, tags, yearOfPublishing } = data;
 
   return (
@@ -24,9 +24,17 @@ const ReadBooks = ({ data }) => {
           <p className='text-sm text-gray-800'>Rating: {rating}</p>
         </div>
         <p className='mt-2 text-gray-700'>{review}</p>
+        <div className="flex items-center gap-6 mt-4">
         <Link to={`/book-detals/${id}`}>
         <button className='mt-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-blue-600'>View Details</button>
         </Link>
+        <button
+            className={`font-medium p-2 ${isFavorite ? 'bg-red-500' : 'bg-green-600'} text-white`}
+            onClick={() => toggleFavorite(data)}
+          >
+            {isFavorite ? 'Remove Favorite' : 'Add Favorite'}
+          </button>
+        </div>
         
       </div>
     </div>

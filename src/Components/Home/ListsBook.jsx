@@ -5,6 +5,7 @@ import ReadBooks from "./ReadBooks";
 import WishlistBooks from "./WishlistBooks";
 import { BarChart } from "recharts";
 import Short from "./Short";
+import FavouritBooks from "../FavouriteBooks/FavouritBooks";
 
 
 
@@ -12,8 +13,20 @@ const ListsBook = () => {
 	const {localData} = UseloacalStorage();
 	const [tabIndex, setTabIndex] = useState(0);
   const [sortOption, setSortOpiton ] = useState("");
+  const [favoriteBooks, setFavoriteBooks] = useState([]);
 
   const filteredBooks = localData.filter(item => item.listType === (tabIndex === 0 ? "reading" : "wishlist"));
+
+  const toggleFavorite = (book) => {
+    setFavoriteBooks((prevFavorites) => {
+      const isFavorite = prevFavorites.some(fav => fav.id === book.id);
+      if (isFavorite) {
+        return prevFavorites.filter(fav => fav.id !== book.id);
+      } else {
+        return [...prevFavorites, book];
+      }
+    });
+  };
 
   const sortedBooks = filteredBooks.sort((a, b) => {
     if(sortOption === "rating"){
@@ -56,15 +69,16 @@ const ListsBook = () => {
     <div>
 <BarChart data={sortedBooks} /> 
           {sortedBooks.map(data => (
-            <ReadBooks key={data.id} data={data} />
+            <ReadBooks key={data.id} data={data} toggleFavorite={toggleFavorite} isFavorite={favoriteBooks.some(book => book.id === data.id)} />
           ))}
         </div>
       )}
       {tabIndex === 1 && (
         <div>
           {sortedBooks.map(data => (
-            <WishlistBooks key={data.id} data={data} />
+            <WishlistBooks key={data.id} data={data} toggleFavorite={toggleFavorite}   isFavorite={favoriteBooks.some(book => book.id === data.id)} />
           ))}
+          <FavouritBooks favoriteBooks={favoriteBooks} />
     </div>
   )
 }

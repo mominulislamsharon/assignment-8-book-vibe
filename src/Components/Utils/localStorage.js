@@ -20,10 +20,9 @@ export const getFormalLocalStorage = () => {
 }
 
 
-
-
-
-
-
-
+export const getFavoriteBooksFromLocalStorage = () => {
+  const data = JSON.parse(localStorage.getItem("bookdetails")) || [];
+  const favoriteBooks = data.filter(book => book.listType === "favorite");
+  return favoriteBooks;
+};
 
